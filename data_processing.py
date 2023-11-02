@@ -100,3 +100,13 @@ my_table2 = my_DB.search('countries')
 my_table3 = my_table1.join(my_table2, 'country')
 my_table3_filtered = my_table3.filter(lambda x: x['EU'] == 'no').filter(lambda x: float(x['temperature']) < 5.0)
 print(my_table3_filtered.table)
+
+eu_countries = ["Austria", "Belgium", ...]  # List of EU countries
+for country in eu_countries:
+    min_temp, max_temp = DB.find_min_max_temperatures(country)
+    print(f"{country}: Min Temp = {min_temp}, Max Temp = {max_temp}")
+
+all_countries = set(city['Country'] for city in DB.cities_data)
+for country in all_countries:
+    min_lat, max_lat = DB.find_min_max_latitude(country)
+    print(f"{country}: Min Latitude = {min_lat}, Max Latitude = {max_lat}")
